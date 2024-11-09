@@ -1,0 +1,13 @@
+{
+  "name": "com.kinokoforce.screenshotnotifier",
+  "version": "1.0.0",
+  "displayName": "Screenshot Notifier",
+  "description": "Screenshot and screen recording notifier for mobile platforms.",
+  "unity": "2019.1",
+  "documentationUrl": "https://github.com/Nyokinokonoko/ScreenshotNotifier",
+  "author": {
+    "name": "Kenny Ha",
+    "url": "https://github.com/Nyokinokonoko/"
+  },
+  "license": "MIT"
+}
