@@ -1,6 +1,6 @@
 {
   "name": "com.kinokoforce.screenshotnotifier",
-  "version": "1.0.0",
+  "version": "0.1.0-preview",
   "displayName": "Screenshot Notifier",
   "description": "Screenshot and screen recording notifier for mobile platforms.",
   "unity": "2019.1",
