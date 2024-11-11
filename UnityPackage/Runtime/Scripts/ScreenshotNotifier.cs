@@ -91,7 +91,7 @@ namespace KinokoForce.ScreenshotNotifier
 
         private static class NativeMethods
         {
-            // Import native methods
+#if UNITY_IOS // Currently only for iOS
             [DllImport("__Internal")]
             internal static extern void SetScreenRecordingStatusChangedCallback(ScreenRecordingStatusChangedHandler callback);
 
@@ -106,6 +106,13 @@ namespace KinokoForce.ScreenshotNotifier
 
             [DllImport("__Internal")]
             internal static extern bool CheckCaptureStatus();
+#else
+            internal static void SetScreenRecordingStatusChangedCallback(ScreenRecordingStatusChangedHandler callback) {}
+            internal static void SetScreenshotDetectedCallback(ScreenshotDetectedHandler callback) {}
+            internal static void EnterCaptureProhibitSession() {}
+            internal static void ExitCaptureProhibitSession() {}
+            internal static bool CheckCaptureStatus() {return false;}
+#endif
         }
     }
 }
