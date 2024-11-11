@@ -20,7 +20,7 @@ A native plugin detecting screenshot and screen recording activities for Unity. 
 
 ## Install
 
-- Add the following git URL in Package Manager: `https://github.com/Nyokinokonoko/ScreenshotNotifier.git?pathUnityPackage/`
+- Add the following git URL in Package Manager: `https://github.com/Nyokinokonoko/ScreenshotNotifier.git?path=UnityPackage/`
 
 ## Sample
 
