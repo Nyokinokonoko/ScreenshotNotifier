@@ -1,0 +1,51 @@
+name: Build iOS Library
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  build-ios:
+    name: Build iOS Library
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+      - name: Build iOS Library
+        run: |
+          cd NativePlugin/ios/make
+          xcodebuild -project ScreenshotNotifier.xcodeproj -scheme ScreenshotNotifier -configuration Release -sdk iphoneos clean build
+          cp build/Release-iphoneos/libScreenshotNotifier.a ../../../../UnityPackage/Runtime/Plugins/iOS/
+          cp build/Release-iphoneos/libScreenshotNotifier.a ../../lib/
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ../../../../UnityPackage/Runtime/Plugins/iOS
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add libScreenshotNotifier.a
+          git commit -m "Update iOS library build in UnityPackage"
+          git push
+
+      - name: Commit to NativePlugin/ios/lib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ../../../../NativePlugin/ios/lib
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add libScreenshotNotifier.a
+          git commit -m "Update iOS library build in NativePlugin/ios/lib"
+          git push
