@@ -26,7 +26,6 @@ jobs:
           cd NativePlugin/ios/make
           xcodebuild -project ScreenshotNotifier.xcodeproj -scheme ScreenshotNotifier -configuration Release -sdk iphoneos clean build
           mkdir -p ../../../UnityPackage/Runtime/Plugins/iOS/
-          mkdir -p ../../lib/
           # Use the full path to the built library from Xcode's DerivedData
           find ~/Library/Developer/Xcode/DerivedData -name "libScreenshotNotifier.a" -type f -exec cp {} ../../../UnityPackage/Runtime/Plugins/iOS/ \;
           find ~/Library/Developer/Xcode/DerivedData -name "libScreenshotNotifier.a" -type f -exec cp {} ../../lib/ \;
